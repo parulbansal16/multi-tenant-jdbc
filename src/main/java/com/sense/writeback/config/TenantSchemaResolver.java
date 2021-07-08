@@ -4,10 +4,10 @@ import com.sense.writeback.interceptor.TenantContext;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
+import static com.sense.writeback.config.Constant.DEFAULT_TENANT;
+
 @Component
 public class TenantSchemaResolver implements CurrentTenantIdentifierResolver {
-
-    private String defaultTenant ="public";
 
     @Override
     public String resolveCurrentTenantIdentifier() {
@@ -15,7 +15,7 @@ public class TenantSchemaResolver implements CurrentTenantIdentifierResolver {
         if(t!=null){
             return t;
         } else {
-            return defaultTenant;
+            return DEFAULT_TENANT;
         }
     }
 

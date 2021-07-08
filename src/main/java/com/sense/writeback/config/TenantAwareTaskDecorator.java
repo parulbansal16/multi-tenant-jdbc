@@ -4,9 +4,9 @@ import com.sense.writeback.interceptor.TenantContext;
 import org.springframework.core.task.TaskDecorator;
 import org.springframework.lang.NonNull;
 
-public class TenantAwareTaskDecorator implements TaskDecorator {
+import static com.sense.writeback.config.Constant.DEFAULT_TENANT;
 
-    private String defaultTenant ="public";
+public class TenantAwareTaskDecorator implements TaskDecorator {
 
     @Override
     @NonNull
@@ -17,7 +17,7 @@ public class TenantAwareTaskDecorator implements TaskDecorator {
                 TenantContext.setCurrentTenant(tenantId);
                 runnable.run();
             } finally {
-                TenantContext.setCurrentTenant(defaultTenant);
+                TenantContext.setCurrentTenant(DEFAULT_TENANT);
             }
         };
     }
